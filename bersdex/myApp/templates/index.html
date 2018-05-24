@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<div class="row" style="margin-top:100px">
+    {% for product in product_list %}
+        <div class="col s6 m6">
+          <div class="card small z-depth-5">
+            <div class="card-image">
+              <img class="materialboxed" src="/media/{{product.image}}" >
+              <span class="card-title z-depth-5 #424242 grey darken-3" >{{product.title|title}}</span>
+            </div>
+            <div class="card-content">
+              <p>{{product.body|truncatechars:70}}</p>
+            </div>
+            <div class="card-action">
+              <a href="{% url 'detail' slug=product.slug %}">More Details</a>
+            </div>          
+
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      
+
+
+
+{% comment %} paginator {% endcomment %}
+<div class="center">
+  <div>
+<span class="step-links center">
+  <span class="current center">
+    Page {{ product_list.number }} of {{ product_list.paginator.num_pages }}.
+  </span>
+        {% if product_list.has_next %}
+        <ul class="pagination">
+            {% if product_list.has_previous %}                
+              <li><a href="?page=1">&laquo; first</a></li>
+              <li><a href="?page={{ product_list.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
+            {% endif %}
+            <li><a href="?page={{ product_list.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
+            <li><a href="?page={{ product_list.paginator.num_pages }}">last &raquo;</a></li>
+        </ul>
+        </div>    
+        {% endif %}
+    </span>
+</div>
+{% comment %} end paginator {% endcomment %}
+{% endblock %}

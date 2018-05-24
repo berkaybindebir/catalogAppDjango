@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+.mt{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: inline-block;
+    margin-left: 30px
+}
+
+.mt2{
+    margin-top: -20px;
+    margin-bottom: 50px;
+    display: inline-block;
+    margin-left: 30px
+}
+
+</style>
+    <div class="row">
+        <div class="container">
+            <div class="col s12">
+                <div class="col s4 mt">
+                    <img class="materialboxed z-depth-5 image-custom" width="300" height="400" src="/media/{{instance.image}}">
+                </div>
+            <div class="col s8 image-custom">
+                <h1 class="mt left">{{instance.title}}</h1>
+                <p class="mt2 left">{{instance.body}}</p>
+                <p class="mt2 left">Features: {{instance.features}}</p>
+                <p class="mt left">Created At: {{instance.created_at}}</p>
+                <p class="mt left">Product Date: {{instance.prod_date}}</p>
+                <p class="mt left">Size(W*H): {{instance.sizes}}</p>
+            </div>
+            {% if request.user.is_superuser %}
+            <div class="right">
+                <a class="waves-effect waves-light btn blue" href="{% url 'update' slug=instance.slug %}"><i class="material-icons left">edit</i>button</a>
+                <a class="waves-effect waves-light btn red" href="{% url 'delete' slug=instance.slug %}"><i class="material-icons left">delete</i>button</a>
+            </div>
+            {% endif %}
+            </div>
+        </div>
+    </div
+{% endblock content %}

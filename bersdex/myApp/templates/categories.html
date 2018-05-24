@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block content %}
+<a href="/" class="right"><i class="tiny material-icons">arrow_back</i>Go Back</a>
+<div class="row" style="margin-top:100px">
+    {% for product in products %}
+        <div class="col s6 m6">
+          <div class="card small z-depth-5">
+            <div class="card-image">
+              <img class="materialboxed" src="/media/{{product.image}}" >
+              <span class="card-title z-depth-5 #424242 grey darken-3" >{{product.title|title}}</span>
+            </div>
+            <div class="card-content">
+              <p>{{product.body|truncatechars:70}}</p>
+            </div>
+            <div class="card-action">
+              <a href="{% url 'detail' slug=product.slug %}">More Details</a>
+            </div>          
+
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+{% endblock %}

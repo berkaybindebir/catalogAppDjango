@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+{% load material_form %}
+
+
+<div class="row">
+    <div class="offset-s3 col s6 center">
+        <form method="post" action="" enctype="multipart/form-data">{% csrf_token %}
+            {% form form=form %}{% endform %}
+            <input type="submit" value="Create">
+        </form>
+    </div>
+</div>
+
+{% endblock %}
